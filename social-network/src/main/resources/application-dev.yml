@@ -1,3 +1,11 @@
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/book_social_network
@@ -24,12 +32,10 @@ spring:
           trust: "*"
         auth: true
         starttls:
-          enable: true
-        connectionTimeout: 5000
+          enabled: true
+        connectiontimeout: 5000
         timeout: 3000
-        writeTimeout: 5000
-application:
-  security:
-    jwt:
-      secret-key: 4B1A51F6DE2DCAE596AC7D39ADB63CE62956747316DA7FAEFDEE7B1C6C
-      expiration: 88800000
+        writetimeout: 5000
+
+server:
+  port: 8088
