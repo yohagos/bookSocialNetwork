@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 @EnableAsync
 public class SocialNetworkApiApplication {
 
