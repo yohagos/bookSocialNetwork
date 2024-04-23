@@ -1,5 +1,7 @@
 package com.book.socialnetwork.user;
 
+import com.book.socialnetwork.book.Book;
+import com.book.socialnetwork.history.BookTransactionHistory;
 import com.book.socialnetwork.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -50,6 +52,12 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @Override
     public String getName() {
