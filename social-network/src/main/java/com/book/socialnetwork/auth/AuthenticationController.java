@@ -1,10 +1,13 @@
 package com.book.socialnetwork.auth;
 
+import com.book.socialnetwork.auth.requests.AuthenticationRequest;
 import com.book.socialnetwork.auth.requests.RegisterRequest;
+import com.book.socialnetwork.auth.response.AuthenticationResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +28,20 @@ public class AuthenticationController {
     ) throws MessagingException {
         authService.register(request);
         return ResponseEntity.accepted().build();
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(
+            @RequestBody @Valid AuthenticationRequest request
+    ) {
+        return ResponseEntity.ok(authService.authenticate(request));
+    }
+
+    @GetMapping("/activate-account")
+    public void confirm(
+            @RequestParam String token
+    ) throws MessagingException {
+        authService.activateAccount(token);
     }
 
 }
