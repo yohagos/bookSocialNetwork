@@ -3,6 +3,7 @@ package com.book.socialnetwork.book;
 import com.book.socialnetwork.book.request.BookRequest;
 import com.book.socialnetwork.book.response.BookResponse;
 import com.book.socialnetwork.book.response.BorrowedBookResponse;
+import com.book.socialnetwork.file.FileUtils;
 import com.book.socialnetwork.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,7 @@ public class BookMapper {
                 .rate(book.getRate())
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
-                // todo - implement later
-                // .cover
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
