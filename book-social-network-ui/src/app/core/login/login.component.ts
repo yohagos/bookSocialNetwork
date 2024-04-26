@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationRequest } from '../../services/models';
 import { AuthenticationService } from '../../services/services';
 import { Router } from '@angular/router';
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthenticationService,
     private router: Router,
-
+    private tokenService: TokenService,
   ) {}
 
   register() {
@@ -35,10 +36,16 @@ export class LoginComponent {
     }).subscribe({
       next: (res) => {
         // todo - save token
+        this.tokenService.token = res.token as string
         this.router.navigate(['books'])
       },
       error: (err) => {
-        console.log(err)
+        //console.log(err.error.validationErrors)
+        if (err.error.validationErrors) {
+          this.errorMsg = err.error.validationErrors
+        } else {
+          this.errorMsg.push(err.error.errorMsg)
+        }
       }
     })
   }
