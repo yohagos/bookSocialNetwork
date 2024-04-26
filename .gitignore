@@ -1,1 +1,10 @@
+# General directories
 /.idea/
+
+# UI directories and files
+/book-social-network-ui/.vscode
+/book-social-network-ui/node_modules
+/book-social-network-ui/.angular
+
+# Spring Boot directories and files
+info.md
