@@ -26,6 +26,9 @@ public class SecurityConfig {
 
     private final String[] WHITE_LIST = {
             "/auth/**",
+            "/books/**",
+            "/feedbacks/**",
+            "/v1/api-docs",
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
