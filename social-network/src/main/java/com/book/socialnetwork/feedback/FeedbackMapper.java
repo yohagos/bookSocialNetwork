@@ -13,7 +13,7 @@ public class FeedbackMapper {
     public Feedback toFeedback(FeedbackRequest request) {
         return Feedback.builder()
                 .note(request.note())
-                .comment(request.getComment())
+                .comment(request.comment())
                 .book(
                         Book.builder()
                                 .id(request.bookId())

@@ -3,10 +3,8 @@ package com.book.socialnetwork.feedback.requests;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-@Getter
-@Setter
+
 @Builder
-@AllArgsConstructor
 public record FeedbackRequest(
         @Positive(message = "200")
         @Min(value = 0, message = "201")
