@@ -10,13 +10,16 @@ import { MaterialsModule } from "./materials.module";
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./core/login/login.component";
 import { RegisterComponent } from './core/register/register.component';
+import { ActivateAccountComponent } from './core/activate-account/activate-account.component';
+import { CodeInputModule } from 'angular-code-input';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ActivateAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { RegisterComponent } from './core/register/register.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialsModule,
-    HttpClientModule
+    HttpClientModule,
+    CodeInputModule
   ],
   providers: [
     provideAnimationsAsync(),
