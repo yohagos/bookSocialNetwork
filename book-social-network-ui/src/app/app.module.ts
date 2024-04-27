@@ -3,15 +3,19 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CodeInputModule } from 'angular-code-input';
 
+// Modules
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialsModule } from "./materials.module";
+import { BookRoutingModule } from "./features/book/book-routing.module";
 
+// Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./core/login/login.component";
 import { RegisterComponent } from './core/register/register.component';
 import { ActivateAccountComponent } from './core/activate-account/activate-account.component';
-import { CodeInputModule } from 'angular-code-input';
+
 
 
 @NgModule({
@@ -28,7 +32,8 @@ import { CodeInputModule } from 'angular-code-input';
     AppRoutingModule,
     MaterialsModule,
     HttpClientModule,
-    CodeInputModule
+    CodeInputModule,
+    BookRoutingModule,
   ],
   providers: [
     provideAnimationsAsync(),
