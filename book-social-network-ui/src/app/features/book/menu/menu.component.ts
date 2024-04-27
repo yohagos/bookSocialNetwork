@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BooksService } from '../../../services/services';
 
@@ -7,7 +7,7 @@ import { BooksService } from '../../../services/services';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
 
 
 
@@ -15,8 +15,12 @@ export class MenuComponent {
     private router: Router,
   ) {}
 
-  logout() {
+  ngOnInit() {
     
+  }
+
+  logout() {
+
   }
 
 }
