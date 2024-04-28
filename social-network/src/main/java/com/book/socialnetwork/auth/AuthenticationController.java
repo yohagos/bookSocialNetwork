@@ -7,15 +7,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.ACCEPTED;
 
+@CrossOrigin
 @RestController
 @RequestMapping("auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
+@Slf4j
 public class AuthenticationController {
 
     private final AuthenticationService authService;
@@ -33,6 +36,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody @Valid AuthenticationRequest request
     ) {
+        log.warn(request.getEmail());
         return ResponseEntity.ok(authService.authenticate(request));
     }
 

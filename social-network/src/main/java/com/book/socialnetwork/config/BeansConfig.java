@@ -1,6 +1,7 @@
 package com.book.socialnetwork.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -17,12 +18,12 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static org.springframework.http.HttpHeaders.*;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class BeansConfig {
 
     private final UserDetailsService userDetailsService;
@@ -67,7 +68,7 @@ public class BeansConfig {
                 )
         );
         config.setAllowedMethods(
-                List.of(
+                Arrays.asList(
                         "GET",
                         "POST",
                         "PATCH",
@@ -76,6 +77,7 @@ public class BeansConfig {
                 )
         );
         source.registerCorsConfiguration("/**", config);
+        log.info(source.toString());
         return new CorsFilter(source);
     }
 }

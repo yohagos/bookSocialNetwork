@@ -13,6 +13,7 @@ import com.book.socialnetwork.user.User;
 import com.book.socialnetwork.user.UserRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +29,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
 
     private final UserRepository userRepository;
@@ -45,6 +47,8 @@ public class AuthenticationService {
         var userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new IllegalArgumentException("Role USER was not initialized"));
         // todo - better exception handling
+        log.error(request.toString());
+        log.error(request.getEmail());
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -107,7 +111,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
-    //@Transactional
+    @Transactional
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Token is invalid"));
