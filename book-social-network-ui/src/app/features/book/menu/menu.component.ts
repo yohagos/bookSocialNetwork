@@ -9,14 +9,21 @@ import { BooksService } from '../../../services/services';
 })
 export class MenuComponent implements OnInit{
 
-
-
   constructor(
     private router: Router,
   ) {}
 
   ngOnInit() {
-    
+    const linkColor = document.querySelectorAll('.nav-link')
+    linkColor.forEach((elem) => {
+      if(window.location.href.endsWith(elem.getAttribute('href') || '')) {
+        elem.classList.add('active')
+      }
+      elem.addEventListener('click', () => {
+        linkColor.forEach(l => l.classList.remove('active'))
+        elem.classList.add('active')
+      })
+    })
   }
 
   logout() {

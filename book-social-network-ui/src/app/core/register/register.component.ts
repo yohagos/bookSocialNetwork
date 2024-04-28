@@ -34,6 +34,7 @@ export class RegisterComponent {
       },
       error: (err) => {
         this.errorMsg = err.error.validationErrors
+        //console.log(err)
       }
     })
   }

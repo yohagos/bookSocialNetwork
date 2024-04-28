@@ -19,8 +19,6 @@ import java.util.List;
 @EnableAsync
 public class SocialNetworkApiApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(SocialNetworkApiApplication.class);
-
 	public static void main(String[] args) {
 		SpringApplication.run(SocialNetworkApiApplication.class, args);
 	}
@@ -32,16 +30,9 @@ public class SocialNetworkApiApplication {
 		return args -> {
 			if (roleRepository.findByName("USER").isEmpty()) {
 				roleRepository.save(
-						new Role(
-								1L,
-								"USER",
-								List.of(),
-								LocalDateTime.now(),
-								LocalDateTime.now()
-						)
+						Role.builder().name("USER").build()
 				);
 			}
-			log.warn(roleRepository.findAll().toString());
 		};
 	}
 }
