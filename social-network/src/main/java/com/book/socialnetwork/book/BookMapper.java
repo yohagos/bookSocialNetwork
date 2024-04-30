@@ -44,8 +44,7 @@ public class BookMapper {
                 .authorName(history.getBook().getAuthorName())
                 .isbn(history.getBook().getIsbn())
                 .rate(history.getBook().getRate())
-                .archived(history.getBook().isArchived())
-                .shareable(history.getBook().isShareable())
+                .returned(history.isReturned())
                 .returnApproved(history.isReturnApproved())
                 .build();
     }

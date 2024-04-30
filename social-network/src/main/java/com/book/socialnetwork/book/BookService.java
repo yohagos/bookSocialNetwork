@@ -212,8 +212,6 @@ public class BookService {
             throw new OperationNotPermittedException("Book is archived or not shareable");
 
         User user = ((User) connectedUser.getPrincipal());
-        if (Objects.equals(book.getOwner().getId(), user.getId()))
-            throw new OperationNotPermittedException("You cannot upload a book cover");
 
         var bookCover = fileStorageService.saveFile(file, user.getId());
         book.setBookCover(bookCover);

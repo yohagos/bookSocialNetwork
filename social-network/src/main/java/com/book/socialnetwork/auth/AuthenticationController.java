@@ -15,10 +15,9 @@ import static org.springframework.http.HttpStatus.ACCEPTED;
 
 @CrossOrigin
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
-@Slf4j
 public class AuthenticationController {
 
     private final AuthenticationService authService;
@@ -36,7 +35,6 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody @Valid AuthenticationRequest request
     ) {
-        log.warn(request.getEmail());
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
