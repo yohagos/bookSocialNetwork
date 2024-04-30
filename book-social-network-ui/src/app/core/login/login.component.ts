@@ -18,7 +18,6 @@ export class LoginComponent {
 
   errorMsg: Array<string> = []
 
-
   constructor(
     private authService: AuthenticationService,
     private router: Router,
@@ -35,12 +34,10 @@ export class LoginComponent {
       body: this.authRequest
     }).subscribe({
       next: (res) => {
-        // todo - save token
         this.tokenService.token = res.token as string
         this.router.navigate(['books'])
       },
       error: (err) => {
-        console.log(err)
         if (err.error.validationErrors) {
           this.errorMsg = err.error.validationErrors
         } else {

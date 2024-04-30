@@ -6,9 +6,14 @@ import { FormsModule } from "@angular/forms";
 import { BookRoutingModule } from './book-routing.module';
 
 // Components
-import { MainComponent } from './main/main.component';
-import { MenuComponent } from './menu/menu.component';
+import { MainComponent } from '../main/main.component';
+import { MenuComponent } from '../menu/menu.component';
+import { BookCardComponent } from "../book-card/book-card.component";
+import { BookRatingComponent } from '../book-rating/book-rating.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { MyBooksComponent } from './my-books/my-books.component';
+import { ManageBookComponent } from './manage-book/manage-book.component';
+import { BorrowedBookListComponent } from './borrowed-book-list/borrowed-book-list.component';
 
 
 
@@ -16,7 +21,12 @@ import { BookListComponent } from './book-list/book-list.component';
   declarations: [
     MainComponent,
     MenuComponent,
-    BookListComponent
+    BookCardComponent,
+    BookRatingComponent,
+    BookListComponent,
+    MyBooksComponent,
+    ManageBookComponent,
+    BorrowedBookListComponent
   ],
   imports: [
     CommonModule,
