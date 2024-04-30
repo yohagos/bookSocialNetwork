@@ -594,8 +594,7 @@
           "authorName": { "type": "string" },
           "isbn": { "type": "string" },
           "rate": { "type": "number", "format": "double" },
-          "archived": { "type": "boolean" },
-          "shareable": { "type": "boolean" },
+          "returned": { "type": "boolean" },
           "returnApproved": { "type": "boolean" }
         }
       },
