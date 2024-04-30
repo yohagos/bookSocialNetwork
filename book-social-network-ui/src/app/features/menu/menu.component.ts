@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BooksService } from '../../../services/services';
+import { BooksService } from '../../services/services';
 
 @Component({
   selector: 'app-menu',
@@ -27,7 +27,8 @@ export class MenuComponent implements OnInit{
   }
 
   logout() {
-
+    localStorage.clear()
+    window.location.reload()
   }
 
 }
