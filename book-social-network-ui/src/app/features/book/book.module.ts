@@ -14,6 +14,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { ManageBookComponent } from './manage-book/manage-book.component';
 import { BorrowedBookListComponent } from './borrowed-book-list/borrowed-book-list.component';
+import { ReturnedBookListComponent } from './returned-book-list/returned-book-list.component';
 
 
 
@@ -26,7 +27,8 @@ import { BorrowedBookListComponent } from './borrowed-book-list/borrowed-book-li
     BookListComponent,
     MyBooksComponent,
     ManageBookComponent,
-    BorrowedBookListComponent
+    BorrowedBookListComponent,
+    ReturnedBookListComponent,
   ],
   imports: [
     CommonModule,
