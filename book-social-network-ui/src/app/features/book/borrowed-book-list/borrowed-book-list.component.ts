@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookResponse, BorrowedBookResponse, PageResponseBorrowedBookResponse } from '../../../services/models';
-import { BooksService } from '../../../services/services';
+import { BookResponse, BorrowedBookResponse, FeedbackRequest, PageResponseBorrowedBookResponse } from '../../../services/models';
+import { BooksService, FeedbackService } from '../../../services/services';
 
 @Component({
   selector: 'app-borrowed-book-list',
@@ -14,9 +14,15 @@ export class BorrowedBookListComponent implements OnInit {
   size = 10
 
   selectedBook: BorrowedBookResponse = {}
+  feedbackRequest: FeedbackRequest = {
+    bookId: 0,
+    comment: '',
+    note: 0
+  }
 
   constructor(
     private booksService: BooksService,
+    private feedbackService: FeedbackService,
   ) {}
 
   ngOnInit() {
@@ -29,17 +35,52 @@ export class BorrowedBookListComponent implements OnInit {
       size: this.size
     }).subscribe({
       next: (response) => {
-        console.log(response.content)
         this.borrowedBooks = response
       }
     })
   }
 
   returnBorrowedBook(book: BorrowedBookResponse) {
-    this.selectedBook = book
-    console.log(this.selectedBook)
+    this.selectedBook = {
+      id: book.id,
+      authorName: book.authorName,
+      isbn: book.isbn,
+      title: book.title,
+      rate: book.rate
+    }
   }
 
+  returnBook(withFeedback: boolean) {
+    console.log(this.selectedBook)
+    this.booksService.returnBorrowedBook({
+      'bookId': this.selectedBook?.id as number,
+    }).subscribe({
+      next: () => {
+        if (withFeedback) {
+          this.giveFeedback()
+        }
+        this.selectedBook = {}
+        this.findAllBorrowedBooks()
+      }
+    })
+  }
+
+  giveFeedback() {
+    this.feedbackService.saveFeedback({
+      body: this.feedbackRequest
+    }).subscribe({
+      next: (result) => {
+        console.log(result)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+  setSelectedBookToUndefined() {
+    this.selectedBook = {}
+  }
 
   // Navigation
 
