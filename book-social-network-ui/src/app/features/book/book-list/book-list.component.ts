@@ -15,7 +15,6 @@ export class BookListComponent implements OnInit {
   size = 10
   page = 0
 
-
   constructor(
     private booksService: BooksService,
     private router: Router,
@@ -31,7 +30,6 @@ export class BookListComponent implements OnInit {
       size: this.size
     }).subscribe({
       next: (books) => {
-        console.log(books)
         this.bookResponse = books
       },
       error: (err) => {
