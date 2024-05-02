@@ -194,7 +194,7 @@ public class BookService {
 
         User user = ((User) connectedUser.getPrincipal());
         if (!Objects.equals(book.getOwner().getId(), user.getId()))
-            throw new OperationNotPermittedException("You cannot approve return of a book you do not own");
+            throw new OperationNotPermittedException("You cannot return a book you do not own");
 
         BookTransactionHistory history = transactionHistoryRepository
                 .findByBookIdAndOwnerId(bookId, user.getId())
