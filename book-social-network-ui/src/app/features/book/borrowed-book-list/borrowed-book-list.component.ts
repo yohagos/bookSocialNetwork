@@ -51,7 +51,7 @@ export class BorrowedBookListComponent implements OnInit {
   }
 
   returnBook(withFeedback: boolean) {
-    console.log(this.selectedBook)
+
     this.booksService.returnBorrowedBook({
       'bookId': this.selectedBook?.id as number,
     }).subscribe({
@@ -69,11 +69,8 @@ export class BorrowedBookListComponent implements OnInit {
     this.feedbackService.saveFeedback({
       body: this.feedbackRequest
     }).subscribe({
-      next: (result) => {
-        console.log(result)
-      },
-      error: (err) => {
-        console.log(err)
+      next: () => {
+
       }
     })
   }

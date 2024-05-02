@@ -41,7 +41,7 @@ export class ReturnedBookListComponent implements OnInit {
       this.message = `Book ${book.title} was not returned. Approving cannot be done right now`
       return;
     }
-    console.warn(book.id)
+
     this.booksService.approvedReturnBorrowedBook({
       'bookId': book.id as number
     }).subscribe({
@@ -53,9 +53,6 @@ export class ReturnedBookListComponent implements OnInit {
     })
   }
 
-  print(book: BorrowedBookResponse) {
-
-  }
 
   // Navigations
 

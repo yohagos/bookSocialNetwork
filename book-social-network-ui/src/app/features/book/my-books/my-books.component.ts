@@ -31,9 +31,6 @@ export class MyBooksComponent implements OnInit{
       next: (books) => {
         this.bookResponse = books
       },
-      error: (err) => {
-        console.log(err)
-      }
     })
   }
 
