@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.book</groupId>
-	<artifactId>social-network</artifactId>
+	<artifactId>book-network</artifactId>
 	<version>1.0.0</version>
 	<name>social-network-api</name>
 	<description>Spring Boot project for Book Social Network</description>
@@ -97,6 +97,14 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.12.0</version>
+				<configuration>
+					<release>20</release>
 				</configuration>
 			</plugin>
 		</plugins>
