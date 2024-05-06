@@ -1,19 +1,4 @@
 # Build stage
-#FROM openjdk:22-jdk AS build
-
-#RUN apk --update --no-cache add maven
-#RUN apk upgrade -y
-#RUN apk install maven -y
-#ENV MAVEN_VERSION 3.5.4
-#ENV MAVEN_HOME /usr/lib/mvn
-#ENV PATH $MAVEN_HOME/bin:$PATH
-
-#RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-#  tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-#  rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-#  mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
-
-# Build stage
 FROM maven:latest AS build
 WORKDIR /build
 COPY pom.xml .
@@ -24,7 +9,7 @@ RUN mvn clean package -DskipTests
 # Runtime stage
 FROM amazoncorretto:17
 ARG PROFILE=dev
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=1.0.2
 
 WORKDIR /app
 COPY --from=build /build/target/book-network-*.jar /app/

@@ -24,7 +24,7 @@ services:
 
   bsn-api:
     container_name: bsn-api
-    image: bsn/bsn:1.0.0
+    image: bsn/bsn:1.0.2
     depends_on:
       - postgres
       - maildev
@@ -33,6 +33,15 @@ services:
     networks:
       - spring-bsn
 
+  bsn-ui:
+    container_name: bsn-ui
+    image: bsn/bsn-ui:1.0.0
+    depends_on:
+      - bsn-api
+    ports:
+      - 8080:80
+    networks:
+      - spring-bsn
 
 networks:
   spring-bsn:
