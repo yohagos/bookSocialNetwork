@@ -5,7 +5,7 @@ application:
       expiration: 86400000
   mailing:
     frontend:
-      activation-url: http://localhost:4200/activate-account
+      activation-url: http://localhost:8080/activate-account
   file:
     upload:
       photos-upload-path: ./uploads
@@ -25,20 +25,20 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   mail:
-    host: localhost
-    port: 1025
-    username: mail
-    password: mail
+    host: smtp
+    port: 465
+    username: bugtracker2021@gmail.com
+    password: "xnnabbvoehlmvple"
     properties:
       mail:
         smtp:
-          trust: "*"
-        auth: true
+          auth: true
+          ssl:
+            enable: true
+            trust: "*"
         starttls:
           enabled: true
-        connectiontimeout: 5000
-        timeout: 3000
-        writetimeout: 5000
+      protocol: smtp
 
 server:
   port: 8088
