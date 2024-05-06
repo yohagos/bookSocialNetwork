@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { CodeInputModule } from 'angular-code-input';
 
 // Modules
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialsModule } from "./materials.module";
-import { BookRoutingModule } from "./features/book/book-routing.module";
 
 // Components
 import { AppComponent } from './app.component';
@@ -31,7 +28,6 @@ import { HttpTokenInterceptor } from './core/interceptors/http.token.interceptor
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MaterialsModule,
     HttpClientModule,
     CodeInputModule,
   ],
