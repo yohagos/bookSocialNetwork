@@ -6,6 +6,8 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:8080/activate-account
+  cors:
+    origins: http://localhost:4200,http://localhost:8080
   file:
     upload:
       photos-upload-path: ./uploads
@@ -25,10 +27,10 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   mail:
-    host: smtp
+    host: ${EMAIL_HOSTNAME}
     port: 465
-    username: bugtracker2021@gmail.com
-    password: "xnnabbvoehlmvple"
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:

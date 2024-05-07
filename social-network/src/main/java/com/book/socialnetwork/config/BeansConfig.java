@@ -2,6 +2,7 @@ package com.book.socialnetwork.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -26,6 +27,11 @@ import static org.springframework.http.HttpHeaders.*;
 @RequiredArgsConstructor
 @Slf4j
 public class BeansConfig {
+
+    // not recommended for production
+    // ":*" will allow everything, if origins in application-dev is empty
+    @Value("${application.cors.origins:*}")
+    private List<String> allowedOrigins;
 
     private final UserDetailsService userDetailsService;
 
@@ -56,26 +62,16 @@ public class BeansConfig {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(
-                List.of("http://localhost:4200", "http://localhost:8080")
-        );
+        config.setAllowedOrigins(allowedOrigins);
         config.setAllowedHeaders(
-                Arrays.asList(
-                        ORIGIN,
-                        CONTENT_TYPE,
-                        ACCEPT,
-                        AUTHORIZATION
-                )
+                List.of(
+                        "*"
+                ) // not recommended for production
         );
         config.setAllowedMethods(
-                Arrays.asList(
-                        "GET",
-                        "POST",
-                        "PATCH",
-                        "DELETE",
-                        "PUT"
-                )
+                List.of(
+                        "*"
+                ) // not recommended for production
         );
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
