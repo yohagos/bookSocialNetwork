@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.ACCEPTED;
 
 @CrossOrigin
-@RestController
-@RequestMapping("/auth")
+// @RestController
+// @RequestMapping("/auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
 public class AuthenticationController {

@@ -1,41 +1,34 @@
 package com.book.socialnetwork.config;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.springframework.http.HttpHeaders.*;
-
 @Configuration
 @RequiredArgsConstructor
-@Slf4j
 public class BeansConfig {
 
     // not recommended for production
     // ":*" will allow everything, if origins in application-dev is empty
-    @Value("${application.cors.origins:*}")
-    private List<String> allowedOrigins;
+    /*@Value("${application.cors.origins:*}")
+    private List<String> allowedOrigins;*/
 
-    private final UserDetailsService userDetailsService;
+    // private final UserDetailsService userDetailsService;
 
-    @Bean
+    @Value("${application.security.oauth2.resourceserver.jwt.issuer-uri}")
+    private String issuerUri;
+
+    /*@Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
@@ -46,23 +39,26 @@ public class BeansConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
-    }
+    }*/
+
+    /*@Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }*/
 
     @Bean
     public AuditorAware<Long> auditorAware() {
         return new ApplicationAuditAware();
     }
 
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(allowedOrigins);
+        config.setAllowedOrigins(
+                Collections.singletonList("http://localhost:4200")
+        );
         config.setAllowedHeaders(
                 List.of(
                         "*"
@@ -75,5 +71,10 @@ public class BeansConfig {
         );
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        return JwtDecoders.fromIssuerLocation(issuerUri);
     }
 }
