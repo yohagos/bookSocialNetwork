@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup JDK
-        uses: : actions/setup-jdk@v4
+        uses: : actions/setup-jdk@v5
         with:
           java-version: 20
           distribution: "corretto"
