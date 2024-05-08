@@ -104,8 +104,20 @@ jobs:
 
   deploy:
     name: Deploy Backend
-    runs-on: ubuntu
+    runs-on: self-hosted
     needs: [build-image]
     steps:
       - name: Create deployment folder
-        run: ssh
+        run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
+      - name: Copy docker compose file
+        run: scp docker-compose.yml ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
+      - name: Set ENV variable and deploy
+        run: |
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} << EOF
+          export EMAIL_HOSTNAME=${{ secrets.EMAIL_HOSTNAME }}
+          export EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
+          export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+          cd ci-cd
+          docker-compose -f docker-compose.yml pull -q
+          docker-compose -f docker-compose.yml up -d
+          EOF
