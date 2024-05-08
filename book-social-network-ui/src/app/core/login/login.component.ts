@@ -1,35 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationRequest } from '../../services/models';
 import { AuthenticationService } from '../../services/services';
 import { Router } from '@angular/router';
 import { TokenService } from '../token.service';
+import { KeycloakService } from '../keycloak.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  authRequest: AuthenticationRequest = {
+  /* authRequest: AuthenticationRequest = {
     email: '',
     password: ''
   }
 
-  errorMsg: Array<string> = []
+  errorMsg: Array<string> = [] */
 
   constructor(
-    private authService: AuthenticationService,
-    private router: Router,
-    private tokenService: TokenService,
+    private keycloakService: KeycloakService,
   ) {}
 
-  register() {
-    this.router.navigate(['register'])
+  async ngOnInit() {
+    await this.keycloakService.init()
+    await this.keycloakService.login()
+  }
+
+  /* async register() {
+
   }
 
   login() {
-    this.errorMsg = []
+    /* this.errorMsg = []
     this.authService.authenticate({
       body: this.authRequest
     }).subscribe({
@@ -44,7 +48,7 @@ export class LoginComponent {
           this.errorMsg.push(err.error.errorMsg)
         }
       }
-    })
-  }
+    }) 
+  } */
 
 }
