@@ -28,7 +28,6 @@ export class KeycloakService {
   constructor() { }
 
   async init() {
-    console.log('authentication user')
     const authenticated = await this.keyCloak.init({
       onLoad: 'login-required'
     })
@@ -43,6 +42,7 @@ export class KeycloakService {
   }
 
   logout() {
+    // return this.keyCloak.accountManagement()
     return this.keyCloak.logout({
       redirectUri: 'http://localhost:4200'
     })
