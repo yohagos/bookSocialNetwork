@@ -47,7 +47,7 @@ public class BeansConfig {
     }*/
 
     @Bean
-    public AuditorAware<Long> auditorAware() {
+    public AuditorAware<String> auditorAware() {
         return new ApplicationAuditAware();
     }
 
@@ -57,7 +57,7 @@ public class BeansConfig {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(
-                Collections.singletonList("http://localhost:4200")
+                List.of("http://localhost:4200", "http://localhost:9090")
         );
         config.setAllowedHeaders(
                 List.of(
