@@ -20,7 +20,7 @@ import static org.springframework.http.HttpStatus.ACCEPTED;
 @Tag(name = "Authentication")
 public class AuthenticationController {
 
-    private final AuthenticationService authService;
+    /*private final AuthenticationService authService;
 
     @PostMapping("/register")
     @ResponseStatus(ACCEPTED)
@@ -43,6 +43,6 @@ public class AuthenticationController {
             @RequestParam String token
     ) throws MessagingException {
         authService.activateAccount(token);
-    }
+    }*/
 
 }

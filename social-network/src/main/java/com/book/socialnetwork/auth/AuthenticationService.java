@@ -1,37 +1,10 @@
 package com.book.socialnetwork.auth;
 
-import com.book.socialnetwork.auth.requests.AuthenticationRequest;
-import com.book.socialnetwork.auth.requests.RegisterRequest;
-import com.book.socialnetwork.auth.response.AuthenticationResponse;
-import com.book.socialnetwork.email.EmailService;
-import com.book.socialnetwork.email.EmailTemplateName;
-import com.book.socialnetwork.role.RoleRepository;
-import com.book.socialnetwork.security.JwtService;
-import com.book.socialnetwork.user.Token;
-import com.book.socialnetwork.user.TokenRepository;
-import com.book.socialnetwork.user.User;
-import com.book.socialnetwork.user.UserRepository;
-import jakarta.mail.MessagingException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-
 // @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final UserRepository userRepository;
+    /*private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenRepository tokenRepository;
@@ -76,9 +49,9 @@ public class AuthenticationService {
                 .token(generatedToken)
                 .createdAt(LocalDateTime.now())
                 .expiredAt(LocalDateTime.now().plusMinutes(15))
-                .user(user)
+                //.user(user)
                 .build();
-        tokenRepository.save(token);
+        //tokenRepository.save(token);
         return generatedToken;
     }
 
@@ -123,5 +96,5 @@ public class AuthenticationService {
         userRepository.save(user);
         savedToken.setValidatedAt(LocalDateTime.now());
         tokenRepository.save(savedToken);
-    }
+    }*/
 }
